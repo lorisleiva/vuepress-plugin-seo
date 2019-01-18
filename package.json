@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-seo",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Generate SEO friendly meta header for every page",
   "main": "index.js",
   "keywords": [
