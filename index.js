@@ -1,5 +1,5 @@
 module.exports = (options = {}, context) => {
-    options = Object.assign(options, defaultOptions)
+    options = Object.assign(defaultOptions, options)
 
     return {
         extendPageData ($page) {
