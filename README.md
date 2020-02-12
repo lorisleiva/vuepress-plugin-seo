@@ -67,7 +67,7 @@ Finally you can also add your own custom meta headers through the `customMeta` o
             twitterCard, type, url, image, publishedAt, modifiedAt,
         } = context
 
-        add('twitter:site', $site.themeConfigs.twitter)
+        add('twitter:site', $site.themeConfig.twitter)
         // -> <meta name="twitter:site" content="@github"></meta>
 
         add('book:isbn', '9780091929114', 'property')
