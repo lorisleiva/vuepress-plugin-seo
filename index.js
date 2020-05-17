@@ -26,7 +26,7 @@ module.exports = (options = {}, context) => {
                 publishedAt: options.publishedAt(...optionArgs),
                 modifiedAt: options.modifiedAt(...optionArgs),
             }
-            
+
             options.defaultMeta(addMeta, metaContext)
             options.customMeta(addMeta, metaContext)
             $page.frontmatter.meta = meta
@@ -51,7 +51,7 @@ const defaultOptions = {
     twitterCard: _ => 'summary_large_image',
     type: $page => ['articles', 'posts', 'blog'].some(folder => $page.regularPath.startsWith('/' + folder)) ? 'article' : 'website',
     url: (_, $site, path) => ($site.themeConfig.domain || '') + path,
-    image: ($page, $site) => $page.frontmatter.image && (($site.themeConfig.domain || '') + $page.frontmatter.image),
+    image: ($page, $site) => $page.frontmatter.image && (($site.themeConfig.domain && !$page.frontmatter.image.startsWith('http') || '') + $page.frontmatter.image),
     publishedAt: $page => $page.frontmatter.date && (new Date($page.frontmatter.date)).toISOString(),
     modifiedAt: $page => $page.lastUpdated && (new Date($page.lastUpdated)).toISOString(),
     customMeta: () => {},
