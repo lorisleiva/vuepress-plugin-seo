@@ -32,7 +32,7 @@ The default options below show you how the relevant data is being retrieved from
     twitterCard: _ => 'summary_large_image',
     type: $page => ['articles', 'posts', 'blog'].some(folder => $page.regularPath.startsWith('/' + folder)) ? 'article' : 'website',
     url: (_, $site, path) => ($site.themeConfig.domain || '') + path,
-    image: ($page, $site) => $page.frontmatter.image && (($site.themeConfig.domain || '') + $page.frontmatter.image),
+    image: ($page, $site) => $page.frontmatter.image && (($site.themeConfig.domain && !$page.frontmatter.image.startsWith('http') || '') + $page.frontmatter.image),
     publishedAt: $page => $page.frontmatter.date && new Date($page.frontmatter.date),
     modifiedAt: $page => $page.lastUpdated && new Date($page.lastUpdated),
 }
@@ -63,7 +63,7 @@ Finally you can also add your own custom meta headers through the `customMeta` o
             $page, // Page configs provided by Vuepress
 
             // All the computed options from above:
-            siteTitle, title, description, author, tags, 
+            siteTitle, title, description, author, tags,
             twitterCard, type, url, image, publishedAt, modifiedAt,
         } = context
 
