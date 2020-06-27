@@ -51,7 +51,14 @@ const defaultOptions = {
     twitterCard: _ => 'summary_large_image',
     type: $page => ['articles', 'posts', 'blog'].some(folder => $page.regularPath.startsWith('/' + folder)) ? 'article' : 'website',
     url: (_, $site, path) => ($site.themeConfig.domain || '') + path,
-    image: ($page, $site) => $page.frontmatter.image && (($site.themeConfig.domain && !$page.frontmatter.image.startsWith('http') || '') + $page.frontmatter.image),
+    image: ($page, $site) => {
+        if ($page.frontmatter.image) {
+          return $site.themeConfig.domain &&
+            !$page.frontmatter.image.startsWith('http')
+            ? $site.themeConfig.domain + $page.frontmatter.image
+            : $page.frontmatter.image;
+        }
+      },
     publishedAt: $page => $page.frontmatter.date && (new Date($page.frontmatter.date)).toISOString(),
     modifiedAt: $page => $page.lastUpdated && (new Date($page.lastUpdated)).toISOString(),
     customMeta: () => {},
