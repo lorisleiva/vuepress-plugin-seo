@@ -58,6 +58,7 @@ const defaultOptions = {
             ? $site.themeConfig.domain + $page.frontmatter.image
             : $page.frontmatter.image;
         }
+        return '';
       },
     publishedAt: $page => $page.frontmatter.date && (new Date($page.frontmatter.date)).toISOString(),
     modifiedAt: $page => $page.lastUpdated && (new Date($page.lastUpdated)).toISOString(),
