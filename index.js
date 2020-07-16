@@ -85,7 +85,7 @@ const defaultOptions = {
         // Author.
         if (author) {
             add('twitter:label1', 'Written by')
-            add('twitter:data2', author.name)
+            add('twitter:data1', author.name)
             add('twitter:creator', author.twitter)
         }
 
